@@ -1,0 +1,100 @@
+.content--wrap{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: var(--first-color);   
+    color: var(--second-color);
+}
+
+.content--social-media{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    top:0;
+    right: 0;
+    margin: 1rem;
+    
+}
+.content--social-media img{
+    filter:invert(100%);
+    width: 20px;
+    height: 20px;
+    transition: all ease-in-out 0.15s;
+}
+.content--social-media img:hover{
+    transform: scale(1.5);
+    transform: rotate(-45deg);
+}
+
+.info--name{
+    font-size: 2rem;
+}
+
+
+.info--links{
+    position: relative;
+    top:2000px;
+    display: flex;
+    margin-top: 4rem;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    animation: up 2s forwards;
+   
+}
+.info--links p{
+    cursor: pointer;
+    transition:all ease-in-out 0.3s;
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+
+}
+.info--links p:hover{
+    background-size: 100% 2px;
+    }
+.info--job{
+    animation-name: textShadow;
+    animation-duration: 3s;
+   
+}
+.info--main-name{
+    position: relative;
+    left:2000px;
+    animation: slide 1.5s forwards;
+}
+
+@keyframes textShadow{
+    0%{
+        color:transparent;
+        text-shadow: 10px 10px 10px #ccc;
+    }
+    100%{
+        color:inherit;
+        text-shadow: none;
+    }
+}
+
+
+@keyframes slide {
+    100% {
+      left:0px;
+    }
+    100% {
+      left:0px;
+    }
+  }
+  @keyframes up {
+      100%{
+          top:0;
+      }
+      100%{
+          top:0;
+      }
+  }

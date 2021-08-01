@@ -1,0 +1,47 @@
+.content--logo{
+  position: absolute;
+  left: 0;
+  margin: 1rem;
+  align-self: flex-start;
+  justify-self: flex-start;
+}
+.main--structure {
+    position: relative;
+    top: 40px;
+    left: 80px;
+    height: 40px;
+    width: 10px;
+    border: 1px solid var(--second-color);
+    box-shadow: 2px 2px 1px #ccc;
+    z-index: 8;
+    transform: rotate(-10deg);
+    transition: all ease-in-out 0.25s;
+    cursor: pointer;
+  }
+  .second--structure {
+    position: relative;
+    top: -2px;
+    left: -16px;
+    height: 10px;
+    width: 40px;
+    border: 1px solid var(--second-color);
+    box-shadow: 2px 2px 1px #ccc;
+    background-color: #ccc;
+    z-index: 10;
+    animation: ease-in-out rotate 3s;
+    cursor: pointer;
+    transition: all ease-in-out 0.25s;
+
+  }
+
+  .content--logo:hover .main--structure{
+    transform: rotate(20deg);
+  }
+  @keyframes rotate {
+    0%{
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(3600deg);
+    }
+  }
