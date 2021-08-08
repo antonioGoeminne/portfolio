@@ -42,6 +42,20 @@
       transform: rotate(0deg);
     }
     100%{
-      transform: rotate(3600deg);
+      transform: rotate(4320deg);
+    }
+  }
+  @media screen and (max-width:600px) {
+    .content--logo{
+      margin: 0.2rem;
+    }
+    .main--structure{
+      height: 25px;
+      width: 10px;
+    }
+    .second--structure{
+      left:-10px;
+      height: 5px;
+      width: 25px;
     }
   }

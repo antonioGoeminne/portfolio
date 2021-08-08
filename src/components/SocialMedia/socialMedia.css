@@ -1,0 +1,19 @@
+.content--social-media{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    top:0;
+    right: 0;
+    margin: 1rem;
+   
+}
+.content--social-media img{
+    filter:invert(100%);
+    width: 20px;
+    height: 20px;
+    transition: all ease-in-out 0.15s;
+}
+.content--social-media img:hover{
+    transform: rotate(-45deg);
+}
