@@ -5,7 +5,7 @@ import './logo.css';
 export const Logo = () => {
   return (
     <div className='content--logo'>
-    <Link exact path to='/'>
+    <Link exact path to='/portfolio'>
 
       <div className="main--structure">
         <div className="second--structure" />

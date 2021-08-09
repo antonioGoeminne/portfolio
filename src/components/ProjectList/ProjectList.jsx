@@ -1,8 +1,7 @@
 import { Logo } from "../logo/Logo"
 import { SocialMedia } from "../SocialMedia/SocialMedia"
 import { Project } from "../project/Project"
-import { useEffect } from "react"
-import anime from 'animejs'
+
 import './projectList.css'
 
 export const ProjectList = ({projects}) => {
