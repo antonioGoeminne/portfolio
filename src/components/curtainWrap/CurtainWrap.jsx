@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import anime from 'animejs';
 import './curtainWrap.css';
 
-export const CurtainWrap = ({message}) =>{
+export const CurtainWrap = ({message }) =>{
   useEffect(() => {
     const animationCurtain = anime({
       targets: '.wrap--curtain',
@@ -18,8 +18,10 @@ export const CurtainWrap = ({message}) =>{
     });
   }, []);
 
+
+
   return (
-    <div className="wrap--curtain">
+    <div className="wrap--curtain" >
       <p className="curtain--text">{message}</p>
       <p className="curtain--text__secondary">{message}</p>
 

@@ -6,9 +6,9 @@ import { ProjectsContainer } from "../../components/ProjectsContainer/ProjectsCo
 export const Projects = () => {
     return(
     <Fragment>
-        <CurtainWrap message='projects'/>
-        
+        <CurtainWrap message='projects' />
         <ProjectsContainer />
+
         
     </Fragment>
     )

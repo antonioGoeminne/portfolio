@@ -1,5 +1,6 @@
 import { ProjectList } from '../ProjectList/ProjectList'
 import notas from '../../assets/img/notas.png'
+import tienda from '../../assets/img/tienda.png'
 import { useState } from 'react'
 
 export const ProjectsContainer = () => {
@@ -14,10 +15,11 @@ export const ProjectsContainer = () => {
      },
     {
       id:2,
-      picture:'https://media.istockphoto.com/photos/business-start-up-start-new-project-or-new-idea-concept-wooden-blocks-picture-id1226700383?s=612x612',
+      picture:tienda,
       title:'Tienda E-commerce',
       description:'Practising React using Firebase and Context Api to the Cart and orders from users.',
-      technologies:'React, Css, Firebase'
+      technologies:'React, Css, Firebase',
+      link:'https://antoniogoeminne.github.io/TiendReact'
     }
     ])
     return(

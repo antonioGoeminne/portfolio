@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { Home } from "./pages/home/Home"
 import { Projects } from "./pages/projects/Projects"
-import { Link } from "react-router-dom"
-import { Logo } from "./components/logo/Logo"
+
 
 function App() {
   return (
