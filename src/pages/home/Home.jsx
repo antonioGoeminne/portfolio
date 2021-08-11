@@ -16,7 +16,7 @@ export const Home = () => (
             </div>
             <div className='info--links'>
                 <Link to='/projects'><p>Projects</p></Link>
-                <p>Contact me</p>
+                <Link to='/contact'><p>Contact me</p></Link>
             </div>
         </div>
 

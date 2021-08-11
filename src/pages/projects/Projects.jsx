@@ -8,8 +8,6 @@ export const Projects = () => {
     <Fragment>
         <CurtainWrap message='projects' />
         <ProjectsContainer />
-
-        
     </Fragment>
     )
 }

@@ -1,0 +1,41 @@
+.social--contact-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    width: 40%;
+    height: 100px;
+}
+.social--contact-media_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.social--contact-media_wrap img{
+    width: 30px;
+    height: 30px;
+    filter: invert(100%);
+    margin: 1rem;    
+}
+.social--contact-title{
+    font-size: 2rem;
+}
+.social--contact-mail:hover{
+    color: #AED6F1;
+}
+
+.dev-to{
+    border: 1px solid black;
+    width: 100px;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    border-radius: 2px;
+    color: white;
+    background-color: black;
+}
+@media screen and (max-width:400px) {
+
+    .social--contact-mail{
+        position: relative;
+        right: 40px;
+    }
+}

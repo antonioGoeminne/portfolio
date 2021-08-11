@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { Home } from "./pages/home/Home"
 import { Projects } from "./pages/projects/Projects"
+import { Contact } from "./pages/contact/Contact";
 
 
 function App() {
@@ -12,6 +13,9 @@ function App() {
         </Route>
         <Route exact path='/projects'>
             <Projects />
+        </Route>
+        <Route exact path='/contact'>
+            <Contact />
         </Route>
         <Route path='*'>
         <h3>error 404</h3>

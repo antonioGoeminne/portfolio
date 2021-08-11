@@ -1,8 +1,20 @@
 import './technologies.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import anime from 'animejs'
 
 export const Technologies = () => 
+
 {
+
+    useEffect(() => {
+        let animationTechnologies = anime({
+            targets: '.project--tech-used',
+            translateY:-100,
+            direction:'alternate',
+            easing:'linear',
+            loop:true
+        })
+     }, [])
 
 const[tech, setTech] = useState([
 
