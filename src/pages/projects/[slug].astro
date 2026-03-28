@@ -25,9 +25,9 @@ const { data } = entry;
 <BaseLayout title={`${data.title} — TONI.DEV`}>
 
   <!-- PROJECT HEADER -->
-  <section class="px-6 pt-12 pb-8">
+  <section class="px-4 sm:px-6 pt-8 sm:pt-12 pb-6 sm:pb-8">
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-      <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.9]" transition:name={`title-${entry.id}`}>
+      <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.9]" transition:name={`title-${entry.id}`}>
         {data.title.replace(/_/g, '\u200B_\u200B').split('\u200B').map((part: string) => part === '_' ? <br class="hidden md:block" /> : part)}
       </h1>
       <div class="border border-black shrink-0">
@@ -48,7 +48,7 @@ const { data } = entry;
   </section>
 
   <!-- HERO IMAGE -->
-  <section class="px-6 pb-16">
+  <section class="px-4 sm:px-6 pb-10 sm:pb-16">
     <div class="relative aspect-[16/9] bg-neutral-900 overflow-hidden" transition:name={`hero-${entry.id}`}>
       {data.heroImage ? (
         <img src={data.heroImage} alt={data.title} class="w-full h-full object-cover" />
@@ -62,11 +62,11 @@ const { data } = entry;
   </section>
 
   <!-- CONTENT SPLIT -->
-  <section class="mx-6 border-t border-black" data-reveal>
+  <section class="mx-4 sm:mx-6 border-t border-black" data-reveal>
     <div class="grid grid-cols-1 md:grid-cols-2">
 
       <!-- PROJECT OVERVIEW -->
-      <div class="py-8 pr-8 md:border-r border-black">
+      <div class="py-6 sm:py-8 pr-0 sm:pr-8 md:border-r border-black">
         <div class="flex items-center gap-3 mb-6">
           <span class="w-4 h-4 bg-black inline-block"></span>
           <h2 class="text-sm font-bold">PROJECT_OVERVIEW</h2>
@@ -80,7 +80,7 @@ const { data } = entry;
       </div>
 
       <!-- TECHNICAL SPEC -->
-      <div class="py-8 md:pl-8">
+      <div class="py-6 sm:py-8 md:pl-8 border-t md:border-t-0 border-black">
         <div class="flex items-center gap-3 mb-6">
           <span class="w-4 h-4 border border-black inline-block"></span>
           <h2 class="text-sm font-bold">TECHNICAL_SPEC</h2>
@@ -99,13 +99,13 @@ const { data } = entry;
   </section>
 
   <!-- ARCHIVE VISUALS -->
-  <section class="px-6 py-16" data-reveal>
+  <section class="px-4 sm:px-6 py-10 sm:py-16" data-reveal>
     <div class="flex items-center gap-4 mb-10">
       <hr class="flex-1 border-black" />
       <span class="text-[10px] tracking-widest text-neutral-500">ARCHIVE_VISUALS</span>
       <hr class="flex-1 border-black" />
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
       {data.archiveVisuals.map((visual: { src: string; badge: string; caption: string; label: string }, i: number) => (
         <div class={i % 2 === 1 ? 'md:mt-16' : ''}>
           <div class="relative aspect-[3/4] bg-neutral-900 overflow-hidden">
@@ -128,15 +128,15 @@ const { data } = entry;
   </section>
 
   <!-- NEXT PROJECT -->
-  <section class="border-t border-black px-6 py-16 relative overflow-hidden" data-reveal>
+  <section class="border-t border-black px-4 sm:px-6 py-10 sm:py-16 relative overflow-hidden" data-reveal>
     <span class="text-[10px] tracking-widest text-neutral-500 block mb-4">NEXT_PROJECT</span>
     <a href={`/projects/${nextSlug}`} class="group flex items-center justify-between">
-      <h2 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight relative z-10">
+      <h2 class="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight relative z-10">
         {nextTitle}
       </h2>
       <span class="text-4xl md:text-5xl relative z-10 group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
     </a>
-    <span class="absolute right-0 top-1/2 -translate-y-1/2 text-[12rem] md:text-[16rem] font-extrabold text-neutral-100 leading-none select-none pointer-events-none" aria-hidden="true">
+    <span class="absolute right-0 top-1/2 -translate-y-1/2 text-[8rem] sm:text-[12rem] md:text-[16rem] font-extrabold text-neutral-100 leading-none select-none pointer-events-none" aria-hidden="true">
       {nextTitle.split('_').pop()}
     </span>
   </section>

@@ -1,10 +1,81 @@
-<nav class="flex items-center justify-between px-6 py-4 border-b border-black">
+<nav class="flex items-center justify-between px-6 py-4 border-b border-black relative z-50">
   <a href="/" class="text-sm font-bold tracking-tight">TONI.DEV</a>
-  <div class="flex items-center gap-2">
+
+  <!-- Desktop nav -->
+  <div class="hidden sm:flex items-center gap-2">
     <a href="/#work" class="px-3 py-1 text-xs border border-black hover:bg-black hover:text-white transition-colors">WORK</a>
     <a href="/#about" class="px-3 py-1 text-xs border border-black hover:bg-black hover:text-white transition-colors">ABOUT</a>
     <a href="/#contact" class="px-3 py-1 text-xs border border-black hover:bg-black hover:text-white transition-colors">CONTACT</a>
     <a href="#lab" class="px-3 py-1 text-xs border border-black hover:bg-black hover:text-white transition-colors">LAB</a>
     <a href="#resume" class="px-3 py-1 text-xs bg-black text-white border border-black hover:bg-white hover:text-black transition-colors">RESUME</a>
   </div>
+
+  <!-- Mobile hamburger -->
+  <button
+    id="nav-toggle"
+    class="sm:hidden flex flex-col justify-center items-center w-8 h-8 border border-black"
+    aria-label="Toggle menu"
+    aria-expanded="false"
+  >
+    <span class="nav-bar block w-4 h-px bg-black transition-transform duration-200"></span>
+    <span class="nav-bar block w-4 h-px bg-black mt-1.5 transition-transform duration-200"></span>
+  </button>
 </nav>
+
+<!-- Mobile overlay menu -->
+<div
+  id="nav-menu"
+  class="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-4 transition-opacity duration-200 opacity-0 pointer-events-none sm:hidden"
+>
+  <a href="/#work" class="nav-link w-56 text-center px-6 py-3 text-sm font-bold border border-black hover:bg-black hover:text-white transition-colors">WORK</a>
+  <a href="/#about" class="nav-link w-56 text-center px-6 py-3 text-sm font-bold border border-black hover:bg-black hover:text-white transition-colors">ABOUT</a>
+  <a href="/#contact" class="nav-link w-56 text-center px-6 py-3 text-sm font-bold border border-black hover:bg-black hover:text-white transition-colors">CONTACT</a>
+  <a href="#lab" class="nav-link w-56 text-center px-6 py-3 text-sm font-bold border border-black hover:bg-black hover:text-white transition-colors">LAB</a>
+  <a href="#resume" class="nav-link w-56 text-center px-6 py-3 text-sm font-bold bg-black text-white border border-black hover:bg-white hover:text-black transition-colors">RESUME</a>
+</div>
+
+<script>
+  function initNav() {
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    if (!toggle || !menu) return;
+
+    function openMenu() {
+      menu!.classList.remove('opacity-0', 'pointer-events-none');
+      menu!.classList.add('opacity-100');
+      toggle!.setAttribute('aria-expanded', 'true');
+      toggle!.classList.add('nav-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      menu!.classList.add('opacity-0', 'pointer-events-none');
+      menu!.classList.remove('opacity-100');
+      toggle!.setAttribute('aria-expanded', 'false');
+      toggle!.classList.remove('nav-open');
+      document.body.style.overflow = '';
+    }
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    menu.querySelectorAll('.nav-link').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initNav);
+  document.addEventListener('astro:page-load', initNav);
+</script>
+
+<style>
+  /* Hamburger to X animation */
+  .nav-open .nav-bar:first-child {
+    transform: translateY(3.5px) rotate(45deg);
+  }
+  .nav-open .nav-bar:last-child {
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+</style>
