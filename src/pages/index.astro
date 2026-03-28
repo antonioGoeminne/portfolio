@@ -1,22 +1,24 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.index - b.data.index);
+const projects = (await getCollection("projects")).sort(
+	(a, b) => a.data.index - b.data.index,
+);
 ---
 
 <BaseLayout title="TONI.DEV">
 
   <!-- HERO -->
-  <section class="px-6 py-16">
-    <div class="border border-black p-8 md:p-12 relative">
+  <section class="px-4 sm:px-6 py-10 sm:py-16">
+    <div class="border border-black p-5 sm:p-8 md:p-12 relative">
       <div class="flex items-center gap-2 mb-6">
         <span class="w-2.5 h-2.5 bg-black inline-block" data-boot data-boot-step="0"></span>
         <span class="text-[10px] tracking-widest uppercase" data-boot data-boot-step="0">
           <span data-typewriter>SYSTEM_INIT_01</span><span class="cursor-block" data-boot-cursor></span>
         </span>
       </div>
-      <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-none mb-6" data-boot data-boot-step="1">
+      <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-none mb-6" data-boot data-boot-step="1">
         TONI.DEV
       </h1>
       <!-- MARQUEE TICKER -->
@@ -36,12 +38,12 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
   </section>
 
   <!-- PROJECT INDEX -->
-  <section id="work" class="px-6 py-16">
+  <section id="work" class="px-4 sm:px-6 py-10 sm:py-16">
     <div class="flex items-baseline justify-between mb-8">
       <h2 class="text-lg md:text-xl font-bold">PROJECT_INDEX</h2>
       <span class="text-xs">[{projects.length}_SELECTED_WORKS]</span>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
       {projects.map((project, i) => (
         <a href={`/projects/${project.id}`} class="group border border-black block hover-invert" data-reveal style={`--reveal-i:${i}`}>
           <div class="aspect-[4/3] bg-neutral-900 overflow-hidden" transition:name={`hero-${project.id}`}>
@@ -60,17 +62,17 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
   </section>
 
   <!-- ABOUT / THE MONOLITH -->
-  <section id="about" class="px-6 py-16">
+  <section id="about" class="px-4 sm:px-6 py-10 sm:py-16">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border border-black" data-reveal>
 
-      <div class="bg-black text-white p-8 flex flex-col justify-between min-h-[320px]">
+      <div class="bg-black text-white p-6 sm:p-8 flex flex-col justify-between min-h-[240px] sm:min-h-[320px]">
         <div>
           <h2 class="text-2xl md:text-3xl font-extrabold leading-tight">THE<br />MONOLITH</h2>
         </div>
         <span class="text-[10px] tracking-wider text-neutral-400">EST. 2018</span>
       </div>
 
-      <div class="p-8">
+      <div class="p-6 sm:p-8">
         <div class="flex justify-end mb-4">
           <span class="text-[10px] tracking-wider border border-black px-2 py-0.5">BIO_DATA</span>
         </div>
@@ -104,7 +106,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
   </section>
 
   <!-- EXPERIENCE LOG -->
-  <section id="experience" class="px-6 py-16">
+  <section id="experience" class="px-4 sm:px-6 py-10 sm:py-16">
     <div class="flex items-baseline justify-between mb-12">
       <h2 class="text-lg md:text-xl font-bold">EXPERIENCE_LOG</h2>
       <span class="text-xs">[TIMELINE_ACTIVE]</span>
@@ -112,7 +114,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
 
     <div class="relative">
       <!-- Timeline line -->
-      <div class="absolute left-[7px] md:left-[120px] top-0 bottom-0 w-px bg-black"></div>
+      <div id="timeline-line" class="absolute left-[7px] top-0 w-px bg-black"></div>
 
       <!-- Entry 1 -->
       <div class="flex flex-col md:flex-row gap-6 md:gap-10 mb-12 relative" data-reveal style="--reveal-i:0">
@@ -123,10 +125,10 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
             <span class="text-[10px] tracking-wider text-neutral-500">2 YRS 3 MOS</span>
           </div>
         </div>
-        <div class="border border-black p-6 flex-1 ml-6 md:ml-0">
+        <div class="border border-black p-4 sm:p-6 flex-1 ml-6 md:ml-0">
           <div class="flex items-start justify-between mb-2">
             <div>
-              <h3 class="text-base md:text-lg font-extrabold">FULL_STACK_MERN_DEVELOPER</h3>
+              <h3 class="text-sm sm:text-base md:text-lg font-extrabold">FULL_STACK_MERN_DEVELOPER</h3>
               <span class="text-xs font-bold block mt-1">PLANT</span>
             </div>
             <span class="border border-black p-1.5 shrink-0">
@@ -148,10 +150,10 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
             <span class="text-[10px] tracking-wider text-neutral-500">2 YRS</span>
           </div>
         </div>
-        <div class="border border-black p-6 flex-1 ml-6 md:ml-0">
+        <div class="border border-black p-4 sm:p-6 flex-1 ml-6 md:ml-0">
           <div class="flex items-start justify-between mb-2">
             <div>
-              <h3 class="text-base md:text-lg font-extrabold">REACT_&_REACT_NATIVE_DEVELOPER</h3>
+              <h3 class="text-sm sm:text-base md:text-lg font-extrabold">REACT_&_REACT_NATIVE_DEVELOPER</h3>
               <span class="text-xs font-bold block mt-1">PLANT</span>
             </div>
             <span class="border border-black p-1.5 shrink-0">
@@ -173,10 +175,10 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
             <span class="text-[10px] tracking-wider text-neutral-500">1 YR</span>
           </div>
         </div>
-        <div class="border border-black p-6 flex-1 ml-6 md:ml-0">
+        <div class="border border-black p-4 sm:p-6 flex-1 ml-6 md:ml-0">
           <div class="flex items-start justify-between mb-2">
             <div>
-              <h3 class="text-base md:text-lg font-extrabold">REACT_DEVELOPER</h3>
+              <h3 class="text-sm sm:text-base md:text-lg font-extrabold">REACT_DEVELOPER</h3>
               <span class="text-xs font-bold block mt-1">VIVET</span>
             </div>
             <span class="border border-black p-1.5 shrink-0">
@@ -193,12 +195,12 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
   </section>
 
   <!-- LAB EXPERIMENTS -->
-  <section id="lab" class="px-6 py-16">
+  <section id="lab" class="px-4 sm:px-6 py-10 sm:py-16">
     <div class="flex items-baseline justify-between mb-8">
       <h2 class="text-lg md:text-xl font-bold">LAB_EXPERIMENTS</h2>
       <span class="text-xs">[RAW_REPOS_&_SKETCHES]</span>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
 
       <div class="border border-black p-5 hover-invert" data-reveal style="--reveal-i:0">
         <div class="flex items-center justify-between mb-4">
@@ -253,11 +255,11 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
   </section>
 
   <!-- CONTACT / INITIATE PROJECT -->
-  <section id="contact" class="px-6 py-20 text-center" data-reveal>
-    <h2 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-12">
+  <section id="contact" class="px-4 sm:px-6 py-12 sm:py-20 text-center" data-reveal>
+    <h2 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8 sm:mb-12">
       INITIATE_PROJECT
     </h2>
-    <div class="flex flex-wrap justify-center gap-4">
+    <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
       <a href="mailto:hello@toni.dev" class="glitch-hover border border-black px-6 py-3 hover-invert" data-text="SEND_MAIL">
         <span class="text-[10px] tracking-wider text-neutral-500 block mb-1">EMAIL_LINK</span>
         <span class="text-sm font-bold">SEND_MAIL</span>
@@ -356,4 +358,24 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
   document.addEventListener('DOMContentLoaded', initBoot);
   // astro:page-load fires on every View Transition navigation
   document.addEventListener('astro:page-load', initBoot);
+
+  // ═══════════════════════════════════════════
+  // TIMELINE LINE HEIGHT
+  // ═══════════════════════════════════════════
+  function initTimelineLine() {
+    const line = document.getElementById('timeline-line');
+    if (!line) return;
+    const container = line.parentElement!;
+    const dots = container.querySelectorAll<HTMLElement>('.rounded-full');
+    if (dots.length === 0) return;
+    const lastDot = dots[dots.length - 1];
+    const containerRect = container.getBoundingClientRect();
+    const dotRect = lastDot.getBoundingClientRect();
+    const height = dotRect.top - containerRect.top + dotRect.height / 2;
+    line.style.height = `${height}px`;
+  }
+
+  document.addEventListener('DOMContentLoaded', initTimelineLine);
+  document.addEventListener('astro:page-load', initTimelineLine);
+  window.addEventListener('resize', initTimelineLine);
 </script>
