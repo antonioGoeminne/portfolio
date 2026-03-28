@@ -3,3 +3,216 @@
 @theme {
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
+
+/* ═══════════════════════════════════════════
+   0. VIEW TRANSITIONS (Brutalist)
+   ═══════════════════════════════════════════ */
+
+/* Old page slides out hard to the left */
+@keyframes vt-slide-out {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(-100%); opacity: 0; }
+}
+
+/* New page cuts in from the right */
+@keyframes vt-slide-in {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+/* Back nav: old slides right, new comes from left */
+@keyframes vt-slide-out-reverse {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes vt-slide-in-reverse {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+/* Apply to the root view transition */
+::view-transition-old(root) {
+  animation: vt-slide-out 0.3s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+::view-transition-new(root) {
+  animation: vt-slide-in 0.3s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+/* Back navigation — Astro adds [data-astro-transition="back"] */
+[data-astro-transition="back"]::view-transition-old(root) {
+  animation: vt-slide-out-reverse 0.3s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+[data-astro-transition="back"]::view-transition-new(root) {
+  animation: vt-slide-in-reverse 0.3s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+/* Named transitions (hero image, title) use the browser's default morph
+   for position/size interpolation — no custom anim needed.
+   Astro generates unique view-transition-name per element. */
+
+/* Scanline flash overlay during transition */
+@keyframes vt-scanline {
+  0%   { opacity: 0; }
+  15%  { opacity: 1; }
+  30%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.vt-scanline-overlay {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.04) 2px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+}
+
+/* ═══════════════════════════════════════════
+   1. BOOT SEQUENCE
+   ═══════════════════════════════════════════ */
+
+/* Hide boot elements until JS kicks in */
+[data-boot] {
+  opacity: 0;
+}
+
+/* Blinking block cursor */
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-block {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  background: black;
+  vertical-align: text-bottom;
+  animation: blink-cursor 0.8s step-end infinite;
+}
+
+/* Boot fade-in */
+@keyframes boot-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.boot-reveal {
+  animation: boot-in 0.3s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+/* ═══════════════════════════════════════════
+   2. BINARY HOVER (hard state switch)
+   ═══════════════════════════════════════════ */
+
+.hover-invert {
+  transition: background-color 75ms, color 75ms;
+}
+
+.hover-invert:hover {
+  background-color: black;
+  color: white;
+}
+
+/* ═══════════════════════════════════════════
+   3. SCROLL REVEAL (Intersection Observer)
+   ═══════════════════════════════════════════ */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.5s cubic-bezier(0, 0, 0.2, 1),
+    transform 0.5s cubic-bezier(0, 0, 0.2, 1);
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+[data-reveal-stagger] > [data-reveal] {
+  transition-delay: calc(var(--reveal-i, 0) * 100ms);
+}
+
+/* ═══════════════════════════════════════════
+   4. GLITCH EFFECT (RGB channel split)
+   ═══════════════════════════════════════════ */
+
+.glitch-hover {
+  position: relative;
+}
+
+.glitch-hover::before,
+.glitch-hover::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitch-hover::before {
+  color: #ff0000;
+  z-index: -1;
+}
+
+.glitch-hover::after {
+  color: #0000ff;
+  z-index: -1;
+}
+
+.glitch-hover:hover::before {
+  opacity: 0.6;
+  animation: glitch-r 0.2s steps(2) 1;
+}
+
+.glitch-hover:hover::after {
+  opacity: 0.6;
+  animation: glitch-b 0.2s steps(2) 1;
+}
+
+@keyframes glitch-r {
+  0%   { transform: translate(-2px, 1px); }
+  50%  { transform: translate(2px, -1px); }
+  100% { transform: translate(0); opacity: 0; }
+}
+
+@keyframes glitch-b {
+  0%   { transform: translate(2px, -1px); }
+  50%  { transform: translate(-2px, 1px); }
+  100% { transform: translate(0); opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════
+   5. MARQUEE TICKER
+   ═══════════════════════════════════════════ */
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
