@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allProjects = (await getCollection('projects')).sort((a, b) => a.data.index - b.data.index);
+
+  return allProjects.map((entry, i) => {
+    const next = allProjects[(i + 1) % allProjects.length];
+    return {
+      params: { slug: entry.id },
+      props: {
+        entry,
+        nextSlug: next.id,
+        nextTitle: next.data.title,
+      },
+    };
+  });
+}
+
+const { entry, nextSlug, nextTitle } = Astro.props;
+const { data } = entry;
+---
+
+<BaseLayout title={`${data.title} — TONI.DEV`}>
+
+  <!-- PROJECT HEADER -->
+  <section class="px-6 pt-12 pb-8">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.9]">
+        {data.title.replace(/_/g, '\u200B_\u200B').split('\u200B').map((part: string) => part === '_' ? <br class="hidden md:block" /> : part)}
+      </h1>
+      <div class="border border-black shrink-0">
+        <div class="px-4 py-3 border-b border-black">
+          <span class="text-[10px] tracking-widest text-neutral-500 block">YEAR</span>
+          <span class="text-sm font-bold">{data.year}</span>
+        </div>
+        <div class="px-4 py-3 border-b border-black">
+          <span class="text-[10px] tracking-widest text-neutral-500 block">CLIENT</span>
+          <span class="text-sm font-bold">{data.client}</span>
+        </div>
+        <div class="px-4 py-3">
+          <span class="text-[10px] tracking-widest text-neutral-500 block">ROLE</span>
+          <span class="text-sm font-bold">{data.role}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO IMAGE -->
+  <section class="px-6 pb-16">
+    <div class="relative aspect-[16/9] bg-neutral-900 overflow-hidden">
+      {data.heroImage ? (
+        <img src={data.heroImage} alt={data.title} class="w-full h-full object-cover" />
+      ) : (
+        <div class="w-full h-full bg-gradient-to-br from-neutral-800 to-neutral-950"></div>
+      )}
+      <div class="absolute bottom-4 left-4 bg-white text-black px-3 py-1.5">
+        <span class="text-[10px] tracking-widest font-bold">LOCATION: {data.location}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT SPLIT -->
+  <section class="mx-6 border-t border-black">
+    <div class="grid grid-cols-1 md:grid-cols-2">
+
+      <!-- PROJECT OVERVIEW -->
+      <div class="py-8 pr-8 md:border-r border-black">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-4 h-4 bg-black inline-block"></span>
+          <h2 class="text-sm font-bold">PROJECT_OVERVIEW</h2>
+        </div>
+        <p class="text-xs leading-relaxed font-bold uppercase mb-6">
+          {data.overview.intro}
+        </p>
+        <p class="text-xs leading-relaxed text-neutral-600">
+          {data.overview.body}
+        </p>
+      </div>
+
+      <!-- TECHNICAL SPEC -->
+      <div class="py-8 md:pl-8">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-4 h-4 border border-black inline-block"></span>
+          <h2 class="text-sm font-bold">TECHNICAL_SPEC</h2>
+        </div>
+        <div>
+          {data.technicalSpec.map((spec: { label: string; value: string }) => (
+            <div class="flex items-center justify-between py-3 border-b border-black">
+              <span class="text-[10px] tracking-widest text-neutral-500">{spec.label}</span>
+              <span class="text-xs font-bold">{spec.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ARCHIVE VISUALS -->
+  <section class="px-6 py-16">
+    <div class="flex items-center gap-4 mb-10">
+      <hr class="flex-1 border-black" />
+      <span class="text-[10px] tracking-widest text-neutral-500">ARCHIVE_VISUALS</span>
+      <hr class="flex-1 border-black" />
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {data.archiveVisuals.map((visual: { src: string; badge: string; caption: string; label: string }, i: number) => (
+        <div class={i % 2 === 1 ? 'md:mt-16' : ''}>
+          <div class="relative aspect-[3/4] bg-neutral-900 overflow-hidden">
+            {visual.src ? (
+              <img src={visual.src} alt={visual.caption} class="w-full h-full object-cover" />
+            ) : (
+              <div class="w-full h-full bg-gradient-to-br from-neutral-800 to-neutral-950"></div>
+            )}
+            <div class="absolute top-3 right-3 bg-black text-white px-2 py-1">
+              <span class="text-[10px] tracking-widest font-bold">{visual.badge}</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-3">
+            <span class="text-xs font-bold">{visual.caption}</span>
+            <span class="text-[10px] tracking-widest text-neutral-500">{visual.label}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- NEXT PROJECT -->
+  <section class="border-t border-black px-6 py-16 relative overflow-hidden">
+    <span class="text-[10px] tracking-widest text-neutral-500 block mb-4">NEXT_PROJECT</span>
+    <a href={`/projects/${nextSlug}`} class="group flex items-center justify-between">
+      <h2 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight relative z-10">
+        {nextTitle}
+      </h2>
+      <span class="text-4xl md:text-5xl relative z-10 group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
+    </a>
+    <span class="absolute right-0 top-1/2 -translate-y-1/2 text-[12rem] md:text-[16rem] font-extrabold text-neutral-100 leading-none select-none pointer-events-none" aria-hidden="true">
+      {nextTitle.split('_').pop()}
+    </span>
+  </section>
+
+</BaseLayout>

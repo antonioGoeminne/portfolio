@@ -1,0 +1,23 @@
+{
+  "title": "NEURAL_INTERFACE_V2",
+  "index": 2,
+  "category": "INTERFACE",
+  "year": "2024",
+  "client": "SYNTH_LABS",
+  "role": "SYSTEM_DESIGNER",
+  "location": "NODE_12",
+  "overview": {
+    "intro": "NEURAL_INTERFACE_V2 IS A SECOND-GENERATION COGNITIVE BRIDGE BETWEEN HUMAN OPERATORS AND DISTRIBUTED COMPUTE CLUSTERS. IT REDUCES LATENCY TO NEAR-ZERO.",
+    "body": "Built on a custom protocol stack, the interface translates neural impulse patterns into structured command sequences. The system prioritizes signal fidelity over throughput, ensuring that every instruction arrives uncorrupted at the execution layer."
+  },
+  "technicalSpec": [
+    { "label": "LATENCY", "value": "0.3MS" },
+    { "label": "BANDWIDTH", "value": "12_GBPS" },
+    { "label": "PROTOCOL", "value": "SYNAPSE_V2" },
+    { "label": "ENCRYPTION", "value": "AES_512" }
+  ],
+  "archiveVisuals": [
+    { "src": "", "badge": "M_01", "caption": "SIGNAL_MAPPING", "label": "00_RENDER_001" },
+    { "src": "", "badge": "M_02", "caption": "CORTEX_TOPOLOGY", "label": "01_RENDER_001" }
+  ]
+}
