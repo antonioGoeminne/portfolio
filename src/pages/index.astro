@@ -11,19 +11,26 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
   <section class="px-6 py-16">
     <div class="border border-black p-8 md:p-12 relative">
       <div class="flex items-center gap-2 mb-6">
-        <span class="w-2.5 h-2.5 bg-black inline-block"></span>
-        <span class="text-[10px] tracking-widest uppercase">SYSTEM_INIT_01</span>
+        <span class="w-2.5 h-2.5 bg-black inline-block" data-boot data-boot-step="0"></span>
+        <span class="text-[10px] tracking-widest uppercase" data-boot data-boot-step="0">
+          <span data-typewriter>SYSTEM_INIT_01</span><span class="cursor-block" data-boot-cursor></span>
+        </span>
       </div>
-      <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-none mb-6">
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-none mb-6" data-boot data-boot-step="1">
         TONI.DEV
       </h1>
-      <p class="text-base md:text-lg font-bold tracking-wide">
-        DESIGNER. DEVELOPER.<br />
-        DIGITAL ARCHITECT.
-      </p>
+      <!-- MARQUEE TICKER -->
+      <div class="marquee-container" data-boot data-boot-step="2">
+        <div class="marquee-track text-base md:text-lg font-bold tracking-wide">
+          <span class="pr-12">DESIGNER. DEVELOPER. DIGITAL ARCHITECT.&nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+          <span class="pr-12">DESIGNER. DEVELOPER. DIGITAL ARCHITECT.&nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+          <span class="pr-12">DESIGNER. DEVELOPER. DIGITAL ARCHITECT.&nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+          <span class="pr-12">DESIGNER. DEVELOPER. DIGITAL ARCHITECT.&nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>
+        </div>
+      </div>
       <div class="mt-10 flex flex-col items-end text-[10px] tracking-wider leading-relaxed">
-        <span>STATUS: AVAILABLE_FOR_PROJECTS</span>
-        <span>LOCATION: BUENOS_AIRES, AR</span>
+        <span data-boot data-boot-step="3">STATUS: AVAILABLE_FOR_PROJECTS</span>
+        <span data-boot data-boot-step="4">LOCATION: BUENOS_AIRES, AR</span>
       </div>
     </div>
   </section>
@@ -35,17 +42,17 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
       <span class="text-xs">[{projects.length}_SELECTED_WORKS]</span>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {projects.map((project) => (
-        <a href={`/projects/${project.id}`} class="group border border-black block">
-          <div class="aspect-[4/3] bg-neutral-900 overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-neutral-800 to-neutral-950 group-hover:scale-105 transition-transform duration-300"></div>
+      {projects.map((project, i) => (
+        <a href={`/projects/${project.id}`} class="group border border-black block hover-invert" data-reveal style={`--reveal-i:${i}`}>
+          <div class="aspect-[4/3] bg-neutral-900 overflow-hidden" transition:name={`hero-${project.id}`}>
+            <div class="w-full h-full bg-gradient-to-br from-neutral-800 to-neutral-950"></div>
           </div>
           <div class="p-4 flex items-end justify-between">
             <div>
-              <span class="text-[10px] tracking-wider text-neutral-500">{String(project.data.index).padStart(2, '0')} / {project.data.category}</span>
-              <h3 class="text-sm font-bold mt-1">{project.data.title}</h3>
+              <span class="text-[10px] tracking-wider text-neutral-500 group-hover:text-neutral-300 transition-colors duration-75">{String(project.data.index).padStart(2, '0')} / {project.data.category}</span>
+              <h3 class="text-sm font-bold mt-1" transition:name={`title-${project.id}`}>{project.data.title}</h3>
             </div>
-            <span class="text-lg group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">&nearr;</span>
+            <span class="text-lg">&nearr;</span>
           </div>
         </a>
       ))}
@@ -54,7 +61,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
 
   <!-- ABOUT / THE MONOLITH -->
   <section id="about" class="px-6 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border border-black">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border border-black" data-reveal>
 
       <div class="bg-black text-white p-8 flex flex-col justify-between min-h-[320px]">
         <div>
@@ -108,7 +115,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
       <div class="absolute left-[7px] md:left-[120px] top-0 bottom-0 w-px bg-black"></div>
 
       <!-- Entry 1 -->
-      <div class="flex flex-col md:flex-row gap-6 md:gap-10 mb-12 relative">
+      <div class="flex flex-col md:flex-row gap-6 md:gap-10 mb-12 relative" data-reveal style="--reveal-i:0">
         <div class="flex items-start gap-3 md:w-[240px] shrink-0">
           <div class="w-3.5 h-3.5 bg-black rounded-full mt-1 relative z-10"></div>
           <div>
@@ -133,7 +140,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
       </div>
 
       <!-- Entry 2 -->
-      <div class="flex flex-col md:flex-row gap-6 md:gap-10 mb-12 relative">
+      <div class="flex flex-col md:flex-row gap-6 md:gap-10 mb-12 relative" data-reveal style="--reveal-i:1">
         <div class="flex items-start gap-3 md:w-[240px] shrink-0">
           <div class="w-3.5 h-3.5 bg-black rounded-full mt-1 relative z-10"></div>
           <div>
@@ -158,7 +165,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
       </div>
 
       <!-- Entry 3 -->
-      <div class="flex flex-col md:flex-row gap-6 md:gap-10 relative">
+      <div class="flex flex-col md:flex-row gap-6 md:gap-10 relative" data-reveal style="--reveal-i:2">
         <div class="flex items-start gap-3 md:w-[240px] shrink-0">
           <div class="w-3.5 h-3.5 bg-black rounded-full mt-1 relative z-10"></div>
           <div>
@@ -193,7 +200,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-      <div class="border border-black p-5">
+      <div class="border border-black p-5 hover-invert" data-reveal style="--reveal-i:0">
         <div class="flex items-center justify-between mb-4">
           <span class="text-[10px] tracking-widest bg-black text-white px-2 py-0.5 font-bold">[EXP_01]</span>
           <span class="text-[10px] tracking-widest text-neutral-500">STATUS: ALPHA</span>
@@ -210,7 +217,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
         </div>
       </div>
 
-      <div class="border border-black p-5">
+      <div class="border border-black p-5 hover-invert" data-reveal style="--reveal-i:1">
         <div class="flex items-center justify-between mb-4">
           <span class="text-[10px] tracking-widest bg-black text-white px-2 py-0.5 font-bold">[EXP_02]</span>
           <span class="text-[10px] tracking-widest text-neutral-500">STATUS: STABLE</span>
@@ -226,7 +233,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
         </div>
       </div>
 
-      <div class="border border-black p-5">
+      <div class="border border-black p-5 hover-invert" data-reveal style="--reveal-i:2">
         <div class="flex items-center justify-between mb-4">
           <span class="text-[10px] tracking-widest bg-black text-white px-2 py-0.5 font-bold">[EXP_03]</span>
           <span class="text-[10px] tracking-widest text-neutral-500">STATUS: RECURSIVE</span>
@@ -246,20 +253,20 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
   </section>
 
   <!-- CONTACT / INITIATE PROJECT -->
-  <section id="contact" class="px-6 py-20 text-center">
+  <section id="contact" class="px-6 py-20 text-center" data-reveal>
     <h2 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-12">
       INITIATE_PROJECT
     </h2>
     <div class="flex flex-wrap justify-center gap-4">
-      <a href="mailto:hello@toni.dev" class="border border-black px-6 py-3 hover:bg-black hover:text-white transition-colors">
+      <a href="mailto:hello@toni.dev" class="glitch-hover border border-black px-6 py-3 hover-invert" data-text="SEND_MAIL">
         <span class="text-[10px] tracking-wider text-neutral-500 block mb-1">EMAIL_LINK</span>
         <span class="text-sm font-bold">SEND_MAIL</span>
       </a>
-      <a href="#" class="border border-black px-6 py-3 hover:bg-black hover:text-white transition-colors">
+      <a href="#" class="glitch-hover border border-black px-6 py-3 hover-invert" data-text="BOOK_CALL">
         <span class="text-[10px] tracking-wider text-neutral-500 block mb-1">CALENDAR_SYNC</span>
         <span class="text-sm font-bold">BOOK_CALL</span>
       </a>
-      <a href="#" class="border border-black px-6 py-3 hover:bg-black hover:text-white transition-colors">
+      <a href="#" class="glitch-hover border border-black px-6 py-3 hover-invert" data-text="LINKEDIN">
         <span class="text-[10px] tracking-wider text-neutral-500 block mb-1">SOCIAL_AUTH</span>
         <span class="text-sm font-bold">LINKEDIN</span>
       </a>
@@ -267,3 +274,86 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.index -
   </section>
 
 </BaseLayout>
+
+<script>
+  // ═══════════════════════════════════════════
+  // BOOT SEQUENCE
+  // ═══════════════════════════════════════════
+  function runBootSequence() {
+    const steps = document.querySelectorAll<HTMLElement>('[data-boot]');
+    const typewriterEl = document.querySelector('[data-typewriter]');
+    const cursorEl = document.querySelector('[data-boot-cursor]');
+
+    if (!typewriterEl || !cursorEl) return;
+
+    const fullText = typewriterEl.textContent || '';
+    typewriterEl.textContent = '';
+
+    // Group by step number
+    const groups = new Map<number, HTMLElement[]>();
+    steps.forEach((el) => {
+      const step = parseInt(el.dataset.bootStep || '0');
+      if (!groups.has(step)) groups.set(step, []);
+      groups.get(step)!.push(el);
+    });
+
+    const sortedSteps = [...groups.keys()].sort((a, b) => a - b);
+    let delay = 0;
+
+    // Step 0: typewriter first
+    sortedSteps.forEach((stepNum) => {
+      const els = groups.get(stepNum)!;
+
+      if (stepNum === 0) {
+        // Show elements immediately (they contain the typewriter)
+        els.forEach((el) => {
+          setTimeout(() => {
+            el.style.opacity = '1';
+          }, delay);
+        });
+
+        // Typewriter effect
+        const charDelay = 40;
+        for (let i = 0; i < fullText.length; i++) {
+          setTimeout(() => {
+            typewriterEl.textContent = fullText.slice(0, i + 1);
+          }, delay + i * charDelay);
+        }
+        delay += fullText.length * charDelay + 200;
+
+        // Hide cursor after typewriter completes
+        setTimeout(() => {
+          (cursorEl as HTMLElement).style.display = 'none';
+        }, delay);
+      } else {
+        // Reveal with boot-in animation
+        els.forEach((el) => {
+          setTimeout(() => {
+            el.classList.add('boot-reveal');
+          }, delay);
+        });
+        delay += 150;
+      }
+    });
+  }
+
+  // Run on initial load and View Transition navigations
+  function initBoot() {
+    // Boot sequence only on home page, only on first visit
+    if (window.location.pathname === '/' && !document.documentElement.dataset.booted) {
+      document.documentElement.dataset.booted = 'true';
+      runBootSequence();
+    } else {
+      // If returning to home via back nav, just show everything
+      document.querySelectorAll<HTMLElement>('[data-boot]').forEach((el) => {
+        el.style.opacity = '1';
+        el.classList.add('boot-reveal');
+      });
+    }
+  }
+
+  // DOMContentLoaded for first load
+  document.addEventListener('DOMContentLoaded', initBoot);
+  // astro:page-load fires on every View Transition navigation
+  document.addEventListener('astro:page-load', initBoot);
+</script>
