@@ -216,3 +216,29 @@
   overflow: hidden;
   white-space: nowrap;
 }
+
+/* ═══════════════════════════════════════════
+   6. REDUCED MOTION
+   ═══════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .boot-reveal {
+    animation: none;
+    opacity: 1;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
