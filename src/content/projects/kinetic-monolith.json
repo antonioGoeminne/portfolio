@@ -1,0 +1,23 @@
+{
+  "title": "KINETIC_MONOLITH",
+  "index": 1,
+  "category": "BRANDING",
+  "year": "2024",
+  "client": "AETHER_CORP",
+  "role": "LEAD_ARCHITECT",
+  "location": "SECTOR_08",
+  "overview": {
+    "intro": "KINETIC_MONOLITH IS A RADICAL REIMAGINING OF STATIC INFRASTRUCTURE. IT FUNCTIONS AS A RESPONSIVE GEOMETRY THAT ADAPTS TO ENVIRONMENTAL STIMULI IN REAL-TIME.",
+    "body": "The structure utilizes a modular framework of reinforced carbon-polymer panels, allowing for fluid transformation of its external envelope. This is not merely a building; it is a living schematic of structural intent, designed to endure the harsh conditions of urban density while maintaining a singular, imposing aesthetic presence."
+  },
+  "technicalSpec": [
+    { "label": "MATERIAL_CLASS", "value": "REINFORCED_CO2" },
+    { "label": "LOAD_CAPACITY", "value": "450_TONNES" },
+    { "label": "SYSTEM_UPTIME", "value": "99.998%" },
+    { "label": "POWER_CELL", "value": "FUSION_CORE_V4" }
+  ],
+  "archiveVisuals": [
+    { "src": "", "badge": "M_01", "caption": "STRUCTURAL_VERTEX", "label": "00_RENDER_001" },
+    { "src": "", "badge": "M_02", "caption": "ENVELOPE_REPETITION", "label": "01_RENDER_001" }
+  ]
+}
