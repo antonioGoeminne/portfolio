@@ -1,0 +1,43 @@
+{
+  "title": "CHOCORRAP_LANDING_PAGE",
+  "index": 2,
+  "category": "LANDING_PAGE",
+  "year": "2026",
+  "client": "CHOCORRAP",
+  "role": "WEB_DEVELOPER",
+  "location": "NODE_12",
+  "overview": {
+    "intro": "CHOCORRAP IS A NEW CANDY FROM EZEIZA WITH A COMPETITIVE BRANDING",
+    "body": ""
+  },
+  "heroImage": "https://imgur.com/YKpiyVs.png",
+  "image": "https://imgur.com/YKpiyVs.png",
+  "technicalSpec": [
+    {
+      "label": "STYLING",
+      "value": "ASTRO_STYLES"
+    },
+    {
+      "label": "FRAMEWORK",
+      "value": "ASTRO"
+    },
+    {
+      "label": "TOOLS",
+      "value": "INTERSECTION OBSERVER & OPENCODE"
+    }
+  ],
+  "archiveVisuals": [
+    {
+      "badge": "M_01",
+      "caption": "RESPONSIVE_INDEX",
+      "label": "00_RENDER_001",
+      "src": "https://imgur.com/4ytifO4.png"
+    },
+    {
+      "src": "https://imgur.com/RqrkdQI.png",
+      "badge": "M_02",
+      "caption": "CORTEX_TOPOLOGY",
+      "label": "PRODUCT_SECTION"
+    }
+  ]
+}

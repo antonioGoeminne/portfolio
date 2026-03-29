@@ -1,0 +1,13 @@
+{
+  "title": "CLON_ADOBE_DESIGN_SYSTEM",
+  "index": 1,
+  "status": "ALPHA",
+  "description": "A MINI DESIGN SYSTEM BASED ON A FIGMA COMMUNITY DESIGN",
+  "stack": [
+    "REACT",
+    "TAILWIND_CSS",
+    "STORYBOOK"
+  ],
+  "github": "https://github.com/antonioGoeminne/clon_adobe_design_system",
+  "website": "https://clon-adobe-design-system.vercel.app/?path=/story/atoms-alertdialog--open"
+}

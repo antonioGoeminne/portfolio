@@ -7,7 +7,7 @@
     <a href="/#about" class="px-3 py-1 text-xs border border-black hover:bg-black hover:text-white transition-colors">ABOUT</a>
     <a href="/#contact" class="px-3 py-1 text-xs border border-black hover:bg-black hover:text-white transition-colors">CONTACT</a>
     <a href="#lab" class="px-3 py-1 text-xs border border-black hover:bg-black hover:text-white transition-colors">LAB</a>
-    <a href="#resume" class="px-3 py-1 text-xs bg-black text-white border border-black hover:bg-white hover:text-black transition-colors">RESUME</a>
+    <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="resume-btn px-3 py-1 text-xs bg-black text-white border border-black transition-colors">RESUME</a>
   </div>
 
   <!-- Mobile hamburger -->
@@ -25,34 +25,33 @@
 <!-- Mobile overlay menu -->
 <div
   id="nav-menu"
-  class="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-4 transition-opacity duration-200 opacity-0 pointer-events-none sm:hidden"
+  class="fixed inset-0 bg-white z-40 flex-col items-center justify-center gap-4 sm:hidden"
+  style="display: none;"
 >
   <a href="/#work" class="nav-link w-56 text-center px-6 py-3 text-sm font-bold border border-black hover:bg-black hover:text-white transition-colors">WORK</a>
   <a href="/#about" class="nav-link w-56 text-center px-6 py-3 text-sm font-bold border border-black hover:bg-black hover:text-white transition-colors">ABOUT</a>
   <a href="/#contact" class="nav-link w-56 text-center px-6 py-3 text-sm font-bold border border-black hover:bg-black hover:text-white transition-colors">CONTACT</a>
   <a href="#lab" class="nav-link w-56 text-center px-6 py-3 text-sm font-bold border border-black hover:bg-black hover:text-white transition-colors">LAB</a>
-  <a href="#resume" class="nav-link w-56 text-center px-6 py-3 text-sm font-bold bg-black text-white border border-black hover:bg-white hover:text-black transition-colors">RESUME</a>
+  <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="resume-btn nav-link w-56 text-center px-6 py-3 text-sm font-bold bg-black text-white border border-black transition-colors">RESUME</a>
 </div>
 
-<script>
+<script is:inline>
   function initNav() {
     const toggle = document.getElementById('nav-toggle');
     const menu = document.getElementById('nav-menu');
     if (!toggle || !menu) return;
 
     function openMenu() {
-      menu!.classList.remove('opacity-0', 'pointer-events-none');
-      menu!.classList.add('opacity-100');
-      toggle!.setAttribute('aria-expanded', 'true');
-      toggle!.classList.add('nav-open');
+      menu.style.display = 'flex';
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.classList.add('nav-open');
       document.body.style.overflow = 'hidden';
     }
 
     function closeMenu() {
-      menu!.classList.add('opacity-0', 'pointer-events-none');
-      menu!.classList.remove('opacity-100');
-      toggle!.setAttribute('aria-expanded', 'false');
-      toggle!.classList.remove('nav-open');
+      menu.style.display = 'none';
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.classList.remove('nav-open');
       document.body.style.overflow = '';
     }
 
@@ -66,7 +65,8 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', initNav);
+  // astro:page-load fires on first load AND after every View Transition
+  // Using it as the single entry point avoids duplicate listeners
   document.addEventListener('astro:page-load', initNav);
 </script>
 
@@ -77,5 +77,29 @@
   }
   .nav-open .nav-bar:last-child {
     transform: translateY(-3.5px) rotate(-45deg);
+  }
+
+  /* Resume button rainbow hover */
+  .resume-btn {
+    background-size: 100% 100%;
+    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+  }
+
+  .resume-btn:hover {
+    background-image: linear-gradient(
+      90deg,
+      #ff0000, #ff8800, #ffff00, #00ff00,
+      #00ffff, #0066ff, #8800ff, #ff0088, #ff0000
+    );
+    background-size: 300% 100%;
+    animation: resume-rainbow 4s linear infinite;
+    color: white;
+    border-color: transparent;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  @keyframes resume-rainbow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
   }
 </style>
