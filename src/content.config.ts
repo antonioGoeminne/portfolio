@@ -26,7 +26,21 @@ const projects = defineCollection({
       label: z.string(),
     })),
     heroImage: z.string().optional(),
+    image: z.string().optional(),
   }),
 });
 
-export const collections = { projects };
+const experiments = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/experiments' }),
+  schema: z.object({
+    title: z.string(),
+    index: z.number(),
+    status: z.string(),
+    description: z.string(),
+    stack: z.array(z.string()),
+    github: z.string().optional(),
+    website: z.string().optional(),
+  }),
+});
+
+export const collections = { projects, experiments };

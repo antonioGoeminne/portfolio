@@ -1,0 +1,13 @@
+{
+  "title": "DOLLAR_EXCHANGE",
+  "index": 2,
+  "status": "STABLE",
+  "description": "SHOW REALTIME DOLLAR PRICES WITH A MINIMALIST TABLE.",
+  "stack": [
+    "NEXT_JS",
+    "SWR",
+    "TAILWIND_CSS"
+  ],
+  "github": "https://github.com/antonioGoeminne/dollar-exchange",
+  "website": "https://dollar-exchange.vercel.app/"
+}
